@@ -1,0 +1,233 @@
+{ "id" : "$objectid", "name" : "$name",
+  "fecha_creacion": { "$date" : {"min": "2015-01-01", "max": "2020-12-31T23:59:59.999Z"} },
+  "tipo_cliente": { "$choose": { "from" : [ "A", "B", "C","D", "E"] } },
+  "cod_cliente": "676705",
+  "fecha_alta_cliente": {"min": "2015-01-01", "max": "2020-12-31T23:59:59.999Z"} ,
+  "name": {
+    "apellido": "{{chance.name()}}",
+    "nombre": "Claudine"
+  },
+  "telefono": "$phone",
+  "correo_electronico": "{{chance.email()}}}}",
+  "direccion": {
+    "tipo_via": "Carretera",
+    "nombre_via": "lorem ipsum suspendisse sociosqu condimentum",
+    "numero_via": "235",
+    "ciudad": "Bordelonville",
+    "codigo_postal": "17577"
+  },
+  "age": { "$number": { "min": 18, "max": 99 } },
+  "genero": { "$choose": { "from": ["male", "female"] }},
+  "contratos":[
+    {
+      "id":"8846d8cc-1789-48df-8a04-f34216c7d919",
+      "idempr":"0049",
+      "idcent":"2002",
+      "idprod":"200",
+      "numcontr":"9707936",
+      "descripcion_contrato":"Contrato tipo 2",
+      "fecha_alta_contrato": "2020-12-31T23:59:59.999",
+      "titular":"Titular 3",
+      "saldo":295316.71,
+      "ultimos_movimientos":[
+        {
+          "id":"1bcc6f51-287b-4a04-b8fa-34efaf18a3ba",
+          "fecha_movimiento": "2020-12-31T23:59:59.999",
+          "tipo_movimiento":"DEBE",
+          "descripcion_movimiento":"lorem ipsum sociosqu",
+          "saldo_tras_movimiento":391579.2
+        },
+        {
+          "id":"ab8c576c-5809-4a19-9b94-13702e4a92c2",
+          "fecha_movimiento": "2020-12-31T23:59:59.999",
+          "tipo_movimiento":"DEBE",
+          "descripcion_movimiento":"lorem ipsum eget",
+          "saldo_tras_movimiento":289585.66
+        },
+        {
+          "id":"838525f3-8c8c-4903-b0a2-3dd20a7d4afb",
+          "fecha_movimiento": "2020-12-31T23:59:59.999",
+          "tipo_movimiento":"HABER",
+          "descripcion_movimiento":"lorem ipsum malesuada",
+          "saldo_tras_movimiento":529997.79
+        },
+        {
+          "id":"798be912-fe3a-4013-a170-68edcd5366ac",
+          "fecha_movimiento": "2020-12-31T23:59:59.999",
+          "tipo_movimiento":"HABER",
+          "descripcion_movimiento":"lorem ipsum accumsan",
+          "saldo_tras_movimiento":33166.62
+        },
+        {
+          "id":"b21572cf-717c-430a-ad47-ca2abd2aeac0",
+          "fecha_movimiento": "2020-12-31T23:59:59.999",
+          "tipo_movimiento":"HABER",
+          "descripcion_movimiento":"lorem ipsum leo",
+          "saldo_tras_movimiento":83776.39
+        },
+        {
+          "id":"ce96004f-394e-4b22-bae8-efff209259ee",
+          "fecha_movimiento": "2020-12-31T23:59:59.999",
+          "tipo_movimiento":"HABER",
+          "descripcion_movimiento":"lorem ipsum accumsan",
+          "saldo_tras_movimiento":353494.61
+        },
+        {
+          "id":"8d268ce9-76f4-48f2-85d1-148541775337",
+          "fecha_movimiento": "2020-12-31T23:59:59.999",
+          "tipo_movimiento":"DEBE",
+          "descripcion_movimiento":"lorem ipsum tortor",
+          "saldo_tras_movimiento":954980.48
+        },
+        {
+          "id":"9631bc18-e4ea-43a9-ad74-e8e2a067a0c3",
+          "fecha_movimiento": "2020-12-31T23:59:59.999",
+          "tipo_movimiento":"DEBE",
+          "descripcion_movimiento":"lorem ipsum cursus",
+          "saldo_tras_movimiento":66325.8
+        },
+        {
+          "id":"5f310e6b-d155-4fe3-80d8-a6a255b1a0ba",
+          "fecha_movimiento": "2020-12-31T23:59:59.999",
+          "tipo_movimiento":"HABER",
+          "descripcion_movimiento":"lorem ipsum luctus",
+          "saldo_tras_movimiento":705876.8199999999
+        },
+        {
+          "id":"574f942a-bc59-48cc-b2f2-0ca2f39b0c07",
+          "fecha_movimiento": "2020-12-31T23:59:59.999",
+          "tipo_movimiento":"DEBE",
+          "descripcion_movimiento":"lorem ipsum scelerisque",
+          "saldo_tras_movimiento":236413.7
+        },
+        {
+          "id":"83d087b8-ea58-47c0-b7ab-b20abea58717",
+          "fecha_movimiento": "2020-12-31T23:59:59.999",
+          "tipo_movimiento":"DEBE",
+          "descripcion_movimiento":"lorem ipsum himenaeos",
+          "saldo_tras_movimiento":910769.08
+        },
+        {
+          "id":"eedbbd68-30ab-4173-97ff-3eda5a21812c",
+          "fecha_movimiento": "2020-12-31T23:59:59.999",
+          "tipo_movimiento":"HABER",
+          "descripcion_movimiento":"lorem ipsum primis",
+          "saldo_tras_movimiento":360307.91
+        },
+        {
+          "id":"c6ef0b49-1492-497b-91e7-b725bf167451",
+          "fecha_movimiento": "2020-12-31T23:59:59.999",
+          "tipo_movimiento":"DEBE",
+          "descripcion_movimiento":"lorem ipsum purus",
+          "saldo_tras_movimiento":525599.66
+        },
+        {
+          "id":"eed9575a-ed5f-4642-9647-3ddbc030f16d",
+          "fecha_movimiento": "2020-12-31T23:59:59.999",
+          "tipo_movimiento":"DEBE",
+          "descripcion_movimiento":"lorem ipsum nam",
+          "saldo_tras_movimiento":106569.99
+        },
+        {
+          "id":"3fe83b2d-ec38-4432-8104-65afb4bff013",
+          "fecha_movimiento": "2020-12-31T23:59:59.999",
+          "tipo_movimiento":"HABER",
+          "descripcion_movimiento":"lorem ipsum class",
+          "saldo_tras_movimiento":930967.5
+        },
+        {
+          "id":"27f3d12e-15d2-46b8-847c-17150943eff7",
+          "fecha_movimiento": "2020-12-31T23:59:59.999",
+          "tipo_movimiento":"HABER",
+          "descripcion_movimiento":"lorem ipsum maecenas",
+          "saldo_tras_movimiento":668116.84
+        },
+        {
+          "id":"daf90c4a-4e86-4462-aa84-3a01cbfaa8ff",
+          "fecha_movimiento": "2020-12-31T23:59:59.999",
+          "tipo_movimiento":"DEBE",
+          "descripcion_movimiento":"lorem ipsum ante",
+          "saldo_tras_movimiento":108647.7
+        },
+        {
+          "id":"c9a37a69-77e9-4b3c-9161-cde6769c8b74",
+          "fecha_movimiento": "2020-12-31T23:59:59.999",
+          "tipo_movimiento":"HABER",
+          "descripcion_movimiento":"lorem ipsum leo",
+          "saldo_tras_movimiento":615225.92
+        },
+        {
+          "id":"77700e61-1143-414e-a093-e1812fce3c50",
+          "fecha_movimiento": "2020-12-31T23:59:59.999",
+          "tipo_movimiento":"DEBE",
+          "descripcion_movimiento":"lorem ipsum fusce",
+          "saldo_tras_movimiento":22042.35
+        },
+        {
+          "id":"8ca17f27-58ab-460a-9717-2c376773f48b",
+          "fecha_movimiento": "2020-12-31T23:59:59.999",
+          "tipo_movimiento":"HABER",
+          "descripcion_movimiento":"lorem ipsum rutrum",
+          "saldo_tras_movimiento":563196.85
+        },
+        {
+          "id":"8b936042-c892-49e0-83a4-6664a078397f",
+          "fecha_movimiento": "2020-12-31T23:59:59.999",
+          "tipo_movimiento":"DEBE",
+          "descripcion_movimiento":"lorem ipsum adipiscing",
+          "saldo_tras_movimiento":865241.86
+        },
+        {
+          "id":"7535408a-4c1b-48cf-a36e-f44a230eb9ba",
+          "fecha_movimiento": "2020-12-31T23:59:59.999",
+          "tipo_movimiento":"DEBE",
+          "descripcion_movimiento":"lorem ipsum lorem",
+          "saldo_tras_movimiento":526743.5699999999
+        },
+        {
+          "id":"b52c21b4-f952-4fc9-8dd9-21f21740e195",
+          "fecha_movimiento": "2020-12-31T23:59:59.999",
+          "tipo_movimiento":"DEBE",
+          "descripcion_movimiento":"lorem ipsum nunc",
+          "saldo_tras_movimiento":556759.41
+        },
+        {
+          "id":"f34410b0-a054-4926-ac2d-82f878c8fa90",
+          "fecha_movimiento": "2020-12-31T23:59:59.999",
+          "tipo_movimiento":"DEBE",
+          "descripcion_movimiento":"lorem ipsum dapibus",
+          "saldo_tras_movimiento":452025.08
+        },
+        {
+          "id":"794f9443-f59b-4c6e-8916-51d44c7c64c0",
+          "fecha_movimiento": "2020-12-31T23:59:59.999",
+          "tipo_movimiento":"DEBE",
+          "descripcion_movimiento":"lorem ipsum lorem",
+          "saldo_tras_movimiento":736919.48
+        },
+        {
+          "id":"83902d5e-28f6-4411-b9d6-7114705558d3",
+          "fecha_movimiento":  "2020-12-31T23:59:59.999",
+          "tipo_movimiento":"DEBE",
+          "descripcion_movimiento":"lorem ipsum cursus",
+          "saldo_tras_movimiento":639591.15
+        }
+      ]
+    }
+  ],
+  "redes_sociales":[
+    {
+      "id":"783e885b-1f94-47d7-930d-2a96dea0d41e",
+      "red":"Facebook",
+      "contador_publicaciones":"7632773",
+      "contador_likes":"5230270"
+    },
+    {
+      "id":"5e1ac643-2802-4309-bac2-380efdb17281",
+      "red":"Facebook",
+      "contador_publicaciones":"7573915",
+      "contador_likes":"8184802"
+    }
+  ]
+}
+
