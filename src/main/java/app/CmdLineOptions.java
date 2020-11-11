@@ -1,4 +1,4 @@
-package app.utils;
+package app;
 
 import com.google.devtools.common.options.Option;
 import com.google.devtools.common.options.OptionsBase;
@@ -43,9 +43,9 @@ public class CmdLineOptions extends OptionsBase {
     public int deltaThreads;
 
     @Option(
-            name = "iterations",
+            name = "inserts",
             abbrev = 'i',
-            help = "Name of directory to serve static files.",
+            help = "Number of documents to be inserted per thread.",
             category = "threads",
             defaultValue = "1000"
     )

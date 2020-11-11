@@ -3,17 +3,21 @@
  */
 package app;
 
-
-import app.utils.CmdLineOptions;
+import app.utils.Configuration;
 import app.utils.ConfigurationAdmin;
 import app.utils.MongoClientSingleton;
 import com.google.devtools.common.options.OptionsParser;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 import org.apache.log4j.PropertyConfigurator;
-import org.osgi.service.cm.Configuration;
+import org.bson.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import static java.lang.Thread.sleep;
 
@@ -27,32 +31,70 @@ public class ApplicationMain {
         parser.parseAndExitUponError(args);
         CmdLineOptions options = parser.getOptions(CmdLineOptions.class);
 
-        LOG.info("Starting process with %d threads, incrementing by %d until %d for %d iterations. Waiting %d ms between iterations.\n",
-                options.startThreads, options.deltaThreads, options.maxThreads,
-                options.iterations, options.sleepMs);
-
         PropertyConfigurator.configure("log4j.properties");
         ConfigurationAdmin configAdmin = new ConfigurationAdmin();
+
         Configuration config = configAdmin.getConfiguration(MONGODB_PID);
+        LOG.info("Starting process with " + options.startThreads+ " threads, incrementing by "+options.deltaThreads +
+                        " until " + options.maxThreads + " for " + options.iterations +
+                        " inserts. Waiting " + options.sleepMs+ " ms between batches of threads." );
 
-        int threads = options.startThreads;
+        // Cuenta los registros
+        String databaseName = (String) config.getProperties().get("mongoDatabase");
+        String collectionName = (String) config.getProperties().get("mongoCollection");
 
-        for (int i = 0; i < options.iterations; ++i) {
+        MongoDatabase db = MongoClientSingleton.getInstance().getDatabase(databaseName);
+        MongoCollection<Document> coll = db.getCollection(collectionName);
 
-            for (int j = 0; j < threads; ++j) {
-                ClientThread t = new ClientThread(MongoClientSingleton.getInstance(), config);
-                t.run();
+        long documentsStart = coll.countDocuments();
+        LOG.info("There are " + documentsStart + " documents in " + databaseName + "." + collectionName);
+
+
+        //for (int i = 0; i < options.iterations; ++i) {
+
+        Thread [] threadGroup = new Thread[options.maxThreads];
+        int i = 0;
+        for (int thread_count = 0;   thread_count < options.maxThreads; thread_count += options.deltaThreads) {
+
+            for (int j = 0; j < options.deltaThreads; ++j,  ++i) {
+
+                threadGroup[i] = new ClientThread(MongoClientSingleton.getInstance(), config, options.iterations);
+                threadGroup[i].run();
             }
-            System.out.println("Running " + threads + " threads");
+            LOG.info("Running " + thread_count + " threads");
             try {
                 sleep(options.sleepMs);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
-            if (threads < options.maxThreads)
-                threads += options.deltaThreads;
         }
+
+        LOG.info("Waiting for threads to finish");
+
+        // We should wait for threads to finish.
+        List<Thread> allThreads = new ArrayList<Thread>();
+        for(Thread thread : threadGroup){
+            if(null != thread){
+                if(thread.isAlive()){
+                    allThreads.add(thread);
+                }
+            }
+        }
+
+        while(!allThreads.isEmpty()){
+            Iterator<Thread> ite = allThreads.iterator();
+            while(ite.hasNext()){
+                Thread thread = ite.next();
+                if(!thread.isAlive()){
+                    ite.remove();
+                }
+            }
+        }
+
+        //
+        long documentsEnd = coll.countDocuments();
+        LOG.info("There are now " + documentsEnd + " documents in " + databaseName + "." + collectionName + " started with " + documentsStart);
+
     }
 
     public static void main(String[] args) throws IOException {

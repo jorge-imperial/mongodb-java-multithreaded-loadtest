@@ -1,5 +1,4 @@
 {
-  "_id": ObjectId("5fa1b55b49960677e1baaa02"),
   "id": "cfff1ec8-7bf7-45c7-855d-62643390a65f",
   "fecha_creacion": new "Date(1604433239000)",
   "tipo_cliente": "J",

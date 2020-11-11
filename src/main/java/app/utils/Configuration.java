@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.Dictionary;
 import java.util.Hashtable;
 
+
+
 /**
  * Created by jorgeimperial on 10/2/20.
  */
@@ -11,10 +13,10 @@ public class Configuration implements org.osgi.service.cm.Configuration {
 
     Dictionary <String,Object> dict;
 
-    Configuration() {
+    public Configuration() {
         dict = new Hashtable<String, Object>();
         //  Cambiar connection string
-        String connStr = "mongodb+srv://user:password@belisarius.om7f7.mongodb.net/test?retryWrites=true&w=majority";
+        String connStr = "mongodb+srv://root:mr4Ydl0cKhgeRgDh@belisarius.om7f7.mongodb.net/test?retryWrites=true&w=majority";
         dict.put("mongoDBConnString", connStr);
         dict.put("mongoDatabase", "test");
         dict.put("mongoCollection", "homologacion");

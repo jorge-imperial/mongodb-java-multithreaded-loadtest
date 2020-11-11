@@ -1,12 +1,15 @@
 package app;
 
 import app.utils.MongoClientSingleton;
-import com.mongodb.MongoClient;
 import com.mongodb.MongoException;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+
 import org.bson.Document;
-import org.osgi.service.cm.Configuration;
+
+import app.utils.Configuration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Date;
 
@@ -15,14 +18,16 @@ import java.util.Date;
  */
 public class ClientThread extends Thread {
 
-    MongoClient mongoClient ;
+    private static final Logger LOG = LoggerFactory.getLogger(ClientThread.class);
+    MongoClientSingleton mongoClient ;
     final String MONGODB_PID = "com.mongodb.tse.examples";
-    private Configuration config;
+    private final Configuration config;
+    private final int iterations;
 
-
-    public ClientThread(MongoClientSingleton singleton, Configuration config) {
+    public ClientThread(MongoClientSingleton singleton, Configuration config, int inserts) {
         mongoClient = singleton;
         this.config   = config;
+        this.iterations = inserts;
     }
 
 
@@ -34,19 +39,21 @@ public class ClientThread extends Thread {
 
             MongoDatabase db = mongoClient.getDatabase(databaseName);
             MongoCollection<Document> coll = db.getCollection(collectionName);
-            Date now = new Date();
-            String path = now.toString() + this.mongoClient;
 
-            // Document to be inserted here
-            Document doc = new Document("path", path)
-                    .append("pubstatus", "1").append("pubdate", now.toString())
-                    .append("mailstatus", false);
+            for (int i=0;i<iterations;++i) {
+                Date now = new Date();
 
-            coll.insertOne(doc);
+                // Document to be inserted here
+                Document doc = new Document("path", "meh")
+                        .append("pubstatus", "1").append("pubdate", now.toString())
+                        .append("mailstatus", false);
+
+                coll.insertOne(doc);
+            }
 
         }
         catch (MongoException me) {
-            System.out.print( "ERROR: " + me.getMessage());
+            LOG.error("ERROR: " + me.getMessage());
         }
 
 

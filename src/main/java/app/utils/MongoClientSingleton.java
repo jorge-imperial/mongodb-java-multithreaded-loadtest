@@ -2,7 +2,6 @@ package app.utils;
 
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
-import org.osgi.service.cm.Configuration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
