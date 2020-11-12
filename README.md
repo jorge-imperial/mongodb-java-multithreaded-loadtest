@@ -1,5 +1,9 @@
-# mongodb-java-multithreaded-loadtest
+## mongodb-java-multithreaded-loadtest
 
+A Java client that performs insertions into a MongoDB database using a configurable number of threads.
+
+
+**Usage:**
 ``` 
 Options category 'threads':
   --deltaThreads [-d] (an integer; default: "2")
@@ -14,8 +18,13 @@ Options category 'threads':
     Starting number of threads for this process
 ```
 
-To run up to 10 threads in 10 steps
+
+**Example:**
+
+To run up to 10 threads in 10 steps:
+
+```
  mvn exec:java -Dexec.mainClass=app.ApplicationMain  -Dexec.args="--maxThreads 10 --inserts 10" 
+```
 
-
-Configuration for database can be found in `Configuration.java`
+Configuration for database currently must be changed in `Configuration.java`.
