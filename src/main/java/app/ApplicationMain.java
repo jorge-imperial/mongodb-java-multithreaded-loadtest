@@ -65,8 +65,14 @@ public class ApplicationMain {
             try {
                 sleep(options.sleepMs);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                LOG.error("Thread sleep interrupted after starting threads.");
             }
+        }
+
+        try {
+            Thread.sleep(10000); // 10 second wait
+        } catch (InterruptedException e) {
+           LOG.error("Thread sleep interrupted before join()!!!");
         }
 
         LOG.info("Waiting for threads to finish");
@@ -95,6 +101,8 @@ public class ApplicationMain {
         long documentsEnd = coll.countDocuments();
         LOG.info("There are now " + documentsEnd + " documents in " + databaseName + "." + collectionName + " started with " + documentsStart);
 
+        // Close client.
+        MongoClientSingleton.getInstance().close();
     }
 
     public static void main(String[] args) throws IOException {
