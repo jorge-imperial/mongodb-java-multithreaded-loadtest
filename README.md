@@ -28,3 +28,15 @@ To run up to 10 threads in 10 steps:
 ```
 
 Configuration for database currently must be changed in `Configuration.java`.
+
+
+**Tips**
+
+To create an initial collection to test, use [mgeneratejs](https://github.com/rueckstiess/mgeneratejs) and then `mongoimport`. 
+
+
+```
+$ mgeneratejs template.json -n 500000 > test.collection.json
+$ mongoimport --host mongo.test.com --port 27017 -d test -c collection test.collection.json 
+```
+
