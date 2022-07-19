@@ -40,3 +40,5 @@ $ mgeneratejs template.json -n 500000 > test.collection.json
 $ mongoimport --host mongo.test.com --port 27017 -d test -c collection test.collection.json 
 ```
 
+This code is released as-is, and is not supported by MongoDB.
+
